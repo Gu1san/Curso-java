@@ -30,13 +30,16 @@ public class Cadastro {
             int quant = input.nextInt();
             float[] notas = new float[quant];
             for (int j = 0; j < quant; j++) {
-                IO.println("Valor da nota " + (j+1));
-                float nota = input.nextFloat();
+                float nota = -1;
 
-                if(nota < 0 || nota > 10){
-                    IO.println("Valor inválido");
-                    return;
-                }
+                do{
+                    IO.println("Valor da nota " + (j+1));
+                    nota = input.nextFloat();
+
+                    if (nota < 0 || nota > 10) {
+                        System.out.println("Nota inválida! Digite um valor entre 0 e 10.");
+                    }
+                }while(nota < 0 || nota > 10);
 
                 notas[j] = nota;
             }
