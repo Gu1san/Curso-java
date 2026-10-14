@@ -6,7 +6,7 @@ public class Cadastro {
     static void main() {
         Scanner input = new Scanner(System.in);
 
-        IO.println("Quantos carros deseja cadastrar? (Máx. 50)");
+        IO.println("Quantos alunos deseja cadastrar? (Máx. 50)");
 
         int amount = input.nextInt();
 
@@ -15,41 +15,41 @@ public class Cadastro {
             return;
         }
 
-        Carro[] carros = new Carro[amount];
+        Aluno[] alunos = new Aluno[amount];
         float soma = 0;
 
         for (int i = 0; i < amount; i++) {
             input.nextLine();
 
-            IO.println("Cadastro do carro " + (i + 1));
+            IO.println("Cadastro do aluno " + (i + 1));
 
-            IO.println("Nome do carro:");
+            IO.println("Nome do aluno:");
             String nome = input.nextLine();
 
-            IO.println("Cor do carro:");
-            String cor = input.nextLine();
+            IO.println("Quantas notas o aluno tem?");
+            int quant = input.nextInt();
+            float[] notas = new float[quant];
+            for (int j = 0; j < quant; j++) {
+                IO.println("Valor da nota " + (j+1));
+                float nota = input.nextFloat();
 
-            IO.println("Ano do carro:");
-            int ano = input.nextInt();
+                if(nota < 0 || nota > 10){
+                    IO.println("Valor inválido");
+                    return;
+                }
 
-            IO.println("Preço do carro:");
-            float preco = input.nextFloat();
+                notas[j] = nota;
+            }
 
-            carros[i] = new Carro(nome, preco, cor, ano);
-
-            soma += preco;
+            alunos[i] = new Aluno(nome, notas);
         }
 
         input.close();
 
-        IO.println("Carros criados:");
+        IO.println("Alunos cadastrados:");
 
-        for (Carro carro : carros) {
-            IO.println(carro.nome);
+        for (Aluno aluno : alunos) {
+            IO.println(aluno);
         }
-
-        IO.println(amount + " carros cadastrados\n");
-        IO.println("Soma do valor de todos os carros: " + soma);
-
     }
 }
